@@ -26,13 +26,14 @@ const responseSchema = {
         properties: {
           topic: { type: Type.STRING, description: "The main topic or subject area from the syllabus." },
           intendedOutcomes: { type: Type.STRING, description: "A summary of the Intended Learning Outcomes (ILOs) related to this topic." },
+          reasoning: { type: Type.STRING, description: "A detailed explanation of why the exam questions for this topic were assigned to their respective Bloom's Taxonomy levels. This should justify the placement for each question number." },
           totalItems: { type: Type.INTEGER, description: "The total count of exam questions for this topic." },
           numberOfHours: { type: Type.INTEGER, description: "An estimated number of instruction hours for this topic based on the syllabus. Make a reasonable estimate if not specified." },
           bloomsDistribution: bloomsDistributionSchema,
           itemPlacement: { type: Type.STRING, description: "A comma-separated string of the question numbers corresponding to this topic (e.g., '1, 5, 10')." },
           percentage: { type: Type.NUMBER, description: "The percentage of the total exam items that this topic represents." },
         },
-        required: ["topic", "intendedOutcomes", "totalItems", "numberOfHours", "bloomsDistribution", "itemPlacement", "percentage"],
+        required: ["topic", "intendedOutcomes", "reasoning", "totalItems", "numberOfHours", "bloomsDistribution", "itemPlacement", "percentage"],
       },
     },
     totals: {
@@ -65,10 +66,11 @@ export const analyzeSyllabusAndExam = async (apiKey: string, syllabus: string, e
     3.  **Count Items:** Count the total number of exam questions for each topic.
     4.  **Estimate Hours:** Estimate the number of instructional hours dedicated to each topic. If the syllabus provides clues, use them; otherwise, make a reasonable professional estimate based on the topic's depth.
     5.  **Distribute by Bloom's Taxonomy:** For each topic, count how many questions fall into each level of Bloom's Taxonomy (Remembering, Understanding, Applying, Analyzing, Evaluating, Creating).
-    6.  **List Item Placement:** Provide a comma-separated list of the question numbers for each topic.
-    7.  **Calculate Percentage:** Calculate the percentage of the total exam that each topic represents.
-    8.  **Calculate Totals:** Create a final "totals" summary for all columns.
-    9.  **Format Output:** Format the entire output as a single JSON object strictly adhering to the provided schema, containing 'tableRows' and 'totals'.
+    6.  **Provide Reasoning:** For each topic, write a brief but clear explanation for why the specific exam questions were assigned to their respective Bloom's Taxonomy levels. Reference the cognitive skills required (e.g., 'Question 1 requires recalling facts, placing it in Remembering. Question 5 asks for a critique, which is an Evaluating skill.').
+    7.  **List Item Placement:** Provide a comma-separated list of the question numbers for each topic.
+    8.  **Calculate Percentage:** Calculate the percentage of the total exam that each topic represents.
+    9.  **Calculate Totals:** Create a final "totals" summary for all columns.
+    10. **Format Output:** Format the entire output as a single JSON object strictly adhering to the provided schema, containing 'tableRows' and 'totals'.
 
     **Syllabus Content:**
     ---
