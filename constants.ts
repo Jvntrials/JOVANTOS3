@@ -36,6 +36,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Cell Biology',
       intendedOutcomes: 'Remember the basic structures and functions of eukaryotic cells.',
+      reasoning: "Question 1 asks students to label parts of a cell diagram. This is a direct recall of factual information, which squarely falls under the 'Remembering' category of Bloom's Taxonomy.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 1, understanding: 0, applying: 0, analyzing: 0, evaluating: 0, creating: 0 },
@@ -45,6 +46,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Photosynthesis',
       intendedOutcomes: 'Understand the process of photosynthesis and cellular respiration.',
+      reasoning: "Question 2 requires an explanation in the student's own words. This demonstrates comprehension of a concept rather than just recalling a definition, placing it at the 'Understanding' level.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 0, understanding: 1, applying: 0, analyzing: 0, evaluating: 0, creating: 0 },
@@ -54,6 +56,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Genetics',
       intendedOutcomes: 'Apply Mendelian genetics principles to solve basic inheritance problems.',
+      reasoning: "Question 3 requires students to use a known principle (Mendelian genetics) and a tool (Punnett square) to solve a specific problem. This is a classic 'Applying' task.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 0, understanding: 0, applying: 1, analyzing: 0, evaluating: 0, creating: 0 },
@@ -63,6 +66,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Ecology',
       intendedOutcomes: 'Analyze the relationships between different trophic levels in an ecosystem.',
+      reasoning: "Question 4 asks students to describe the flow of energy, which involves breaking down the concept of a food web into its component parts and showing the relationship between them. This is characteristic of the 'Analyzing' level.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 0, understanding: 0, applying: 0, analyzing: 1, evaluating: 0, creating: 0 },
@@ -72,6 +76,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Evolution',
       intendedOutcomes: 'Evaluate the evidence for the theory of evolution by natural selection.',
+      reasoning: "Question 5 requires students to 'critique' an argument. This involves making a judgment based on criteria (the scientific definition of a theory), which is a higher-order thinking skill at the 'Evaluating' level.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 0, understanding: 0, applying: 0, analyzing: 0, evaluating: 1, creating: 0 },
@@ -81,6 +86,7 @@ export const SAMPLE_ANALYSIS_RESULT: TOSResult = {
     {
       topic: 'Taxonomy/Classification',
       intendedOutcomes: 'Create a simple dichotomous key for classifying a given set of organisms.',
+      reasoning: "Question 6 asks students to 'design' a new tool (a dichotomous key) to fulfill a specific purpose. This act of generating a new product or structure is the essence of the 'Creating' level.",
       totalItems: 1,
       numberOfHours: 3,
       bloomsDistribution: { remembering: 0, understanding: 0, applying: 0, analyzing: 0, evaluating: 0, creating: 1 },
