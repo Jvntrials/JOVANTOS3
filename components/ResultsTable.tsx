@@ -27,12 +27,13 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
     };
 
     const handleExportExcel = () => {
-        const header1 = ["Topic", "Intended Outcomes", "Total Items", "No. of Hours", "Bloom's Taxonomy Level of Learning", null, null, null, null, null, "Item Placement", "Percentage"];
-        const header2 = [null, null, null, null, ...bloomKeys.map(k => k.toUpperCase()) , null, null];
+        const header1 = ["Topic", "Intended Outcomes", "Reasoning & Process", "Total Items", "No. of Hours", "Bloom's Taxonomy Level of Learning", null, null, null, null, null, "Item Placement", "Percentage"];
+        const header2 = [null, null, null, null, null, ...bloomKeys.map(k => k.toUpperCase()) , null, null];
         
         const rows = data.tableRows.map(item => [
             item.topic,
             item.intendedOutcomes,
+            item.reasoning,
             item.totalItems,
             item.numberOfHours,
             ...bloomKeys.map(k => item.bloomsDistribution[k]),
@@ -43,7 +44,8 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
         const totals = data.totals;
         const footer = [
             'TOTAL', 
-            null, 
+            null,
+            null,
             totals.totalItems, 
             totals.numberOfHours, 
             ...bloomKeys.map(k => totals.bloomsDistribution[k]),
@@ -59,18 +61,20 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
           // Merging the main headers that span two rows
           { s: { r: 0, c: 0 }, e: { r: 1, c: 0 } }, // Topic
           { s: { r: 0, c: 1 }, e: { r: 1, c: 1 } }, // Intended Outcomes
-          { s: { r: 0, c: 2 }, e: { r: 1, c: 2 } }, // Total Items
-          { s: { r: 0, c: 3 }, e: { r: 1, c: 3 } }, // No. of Hours
-          { s: { r: 0, c: 10 }, e: { r: 1, c: 10 } }, // Item Placement
-          { s: { r: 0, c: 11 }, e: { r: 1, c: 11 } }, // Percentage
+          { s: { r: 0, c: 2 }, e: { r: 1, c: 2 } }, // Reasoning & Process
+          { s: { r: 0, c: 3 }, e: { r: 1, c: 3 } }, // Total Items
+          { s: { r: 0, c: 4 }, e: { r: 1, c: 4 } }, // No. of Hours
+          { s: { r: 0, c: 11 }, e: { r: 1, c: 11 } }, // Item Placement
+          { s: { r: 0, c: 12 }, e: { r: 1, c: 12 } }, // Percentage
           // Merging the 'Bloom's Taxonomy' header
-          { s: { r: 0, c: 4 }, e: { r: 0, c: 9 } },
+          { s: { r: 0, c: 5 }, e: { r: 0, c: 10 } },
         ];
         
         // Set column widths
          worksheet['!cols'] = [
             { wch: 25 }, // Topic
             { wch: 50 }, // Intended Outcomes
+            { wch: 50 }, // Reasoning & Process
             { wch: 12 }, // Total Items
             { wch: 12 }, // No. of Hours
             { wch: 15 }, // Remembering
@@ -123,6 +127,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
             <tr>
               <th scope="col" rowSpan={2} className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider border-r border-slate-300 align-middle">Topic</th>
               <th scope="col" rowSpan={2} className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider border-r border-slate-300 align-middle">Intended Outcomes</th>
+              <th scope="col" rowSpan={2} className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider border-r border-slate-300 align-middle">Reasoning & Process</th>
               <th scope="col" rowSpan={2} className="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider border-r border-slate-300 align-middle">Total Items</th>
               <th scope="col" rowSpan={2} className="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider border-r border-slate-300 align-middle">No. of Hours</th>
               <th scope="col" colSpan={6} className="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider border-r border-slate-300">Bloom's Taxonomy Level of Learning</th>
@@ -140,6 +145,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
               <tr key={index} className="hover:bg-slate-50 transition-colors">
                 <td className="px-3 py-3 font-medium text-slate-800 border-r border-slate-200 align-top">{item.topic}</td>
                 <td className="px-3 py-3 text-slate-600 border-r border-slate-200 align-top max-w-md whitespace-normal">{item.intendedOutcomes}</td>
+                <td className="px-3 py-3 text-slate-600 border-r border-slate-200 align-top max-w-md whitespace-normal">{item.reasoning}</td>
                 <td className="px-3 py-3 text-center text-slate-600 border-r border-slate-200 align-top">{item.totalItems}</td>
                 <td className="px-3 py-3 text-center text-slate-600 border-r border-slate-200 align-top">{item.numberOfHours}</td>
                 {bloomKeys.map(key => (
@@ -153,6 +159,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({ data }) => {
            <tfoot className="bg-slate-100 font-bold text-slate-800">
                 <tr className="border-t-2 border-slate-300">
                     <td className="px-3 py-3 text-left uppercase border-r border-slate-300">Total</td>
+                    <td className="border-r border-slate-300"></td>
                     <td className="border-r border-slate-300"></td>
                     <td className="px-3 py-3 text-center border-r border-slate-300">{data.totals.totalItems}</td>
                     <td className="px-3 py-3 text-center border-r border-slate-300">{data.totals.numberOfHours}</td>
