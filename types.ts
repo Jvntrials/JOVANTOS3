@@ -11,6 +11,7 @@ export interface BloomsDistribution {
 export interface TOSRow {
   topic: string;
   intendedOutcomes: string;
+  reasoning: string;
   totalItems: number;
   numberOfHours: number;
   bloomsDistribution: BloomsDistribution;
